@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AulaVector.Models\AulaVector.Models.csproj" />
+    <ProjectReference Include="..\AulaVector.Utils\AulaVector.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>
