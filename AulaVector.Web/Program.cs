@@ -1,4 +1,29 @@
+using AulaVector.Data;
+using AulaVector.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// 1. Configurar DbContext con PostgreSQL (o SQL Server)
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
+// 2. Configurar ASP.NET Core Identity con ApplicationUser e IdentityRole
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+{
+    // Configuraciones de contraseña
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    
+    // Configuración de usuario
+    options.User.RequireUniqueEmail = true;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -14,8 +39,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
