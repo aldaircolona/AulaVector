@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace AulaVector.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<Guid>
     {
         // Propiedades adicionales personalizadas
         public string Nombres { get; set; } = string.Empty;

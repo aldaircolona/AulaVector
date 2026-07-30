@@ -5,12 +5,12 @@ namespace AulaVector.Models;
 /// </summary>
 public class Order
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
     /// <summary>
     /// Foreign Key referring to the ASP.NET Core Identity user (AspNetUser.Id).
     /// </summary>
-    public string UserId { get; set; } = string.Empty;
+    public Guid UserId { get; set; }
     
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     

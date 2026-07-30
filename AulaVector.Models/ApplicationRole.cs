@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace AulaVector.Models
 {
-    public class ApplicationRole : IdentityRole
+    public class ApplicationRole : IdentityRole<Guid>
     {
         public string? Descripción { get; set; }
 

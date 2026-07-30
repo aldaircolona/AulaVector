@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace AulaVector.Data
 {
     public class ApplicationDbContext
-        : IdentityDbContext<ApplicationUser, ApplicationRole, string>
+        : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
