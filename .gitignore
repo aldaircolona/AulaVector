@@ -3,6 +3,9 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+**/appsettings.Development.json
+AulaVector.Web/appsettings.Development.json
+
 # dotenv files
 .env
 
