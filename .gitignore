@@ -5,6 +5,7 @@
 
 **/appsettings.Development.json
 AulaVector.Web/appsettings.Development.json
+AulaVector.Web/ProtectedFiles/
 
 # dotenv files
 .env
