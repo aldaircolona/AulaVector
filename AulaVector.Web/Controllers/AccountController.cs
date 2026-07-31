@@ -78,7 +78,7 @@ namespace AulaVector.Web.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(
-                    model.Email, 
+                    model.UserName, 
                     model.Password, 
                     model.RememberMe, 
                     lockoutOnFailure: false);
