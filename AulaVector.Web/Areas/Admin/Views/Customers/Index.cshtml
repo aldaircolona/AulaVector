@@ -1,0 +1,109 @@
+@model IEnumerable<AulaVector.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Gestión de Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 py-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-0 text-gray-800">Clientes</h1>
+            <p class="text-muted small mb-0">
+                Administración de usuarios registrados en la plataforma.
+            </p>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Nombre Completo</th>
+                            <th>Fecha de Registro</th>
+                            <th>Estado</th>
+                            <th class="text-end" style="width: 160px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center py-4 text-muted">
+                                    No hay clientes registrados en el sistema.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold text-dark">
+                                            @item.UserName
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-muted">
+                                            @item.Email
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <div class="fw-semibold">
+                                            @item.FirstName @item.LastName
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <small class="text-muted">
+                                            @item.RegistrationDate.ToString("dd/MM/yyyy")
+                                        </small>
+                                    </td>
+
+                                    <td>
+                                        @if (item.IsActive)
+                                        {
+                                            <span class="badge bg-success-subtle text-success border border-success-subtle">
+                                                Activo
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">
+                                                Inactivo
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td class="text-end">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a asp-action="Details"
+                                               asp-route-id="@item.Id"
+                                               class="btn btn-outline-info"
+                                               title="Detalles">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+
+                                            <form asp-action="ToggleStatus" asp-route-id="@item.Id" method="post" class="d-inline">
+                                                <button type="submit" class="btn @(item.IsActive ? "btn-outline-danger" : "btn-outline-success")" title="@(item.IsActive ? "Deshabilitar" : "Habilitar")">
+                                                    <i class="bi @(item.IsActive ? "bi-slash-circle" : "bi-check-circle")"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
