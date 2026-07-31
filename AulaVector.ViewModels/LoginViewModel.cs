@@ -4,12 +4,13 @@ namespace AulaVector.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "The email field is required.")]
-        [EmailAddress(ErrorMessage = "Invalid email format.")]
+        [Required(ErrorMessage = "El email es obligatorio")]
+        [EmailAddress(ErrorMessage = "Formato de email no válido")]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "The password field is required.")]
+        [Required(ErrorMessage = "La contraseña es obligatoria")]
         [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; } = string.Empty;
 
         [Display(Name = "Remember me?")]

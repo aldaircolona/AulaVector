@@ -33,9 +33,9 @@ namespace AulaVector.Web.Controllers
                 // Creating a new ApplicationUser with Guid ID handling inherently mapped by EF Core
                 var user = new ApplicationUser 
                 { 
-                    UserName = model.Email, 
+                    UserName = model.UserName, 
                     Email = model.Email,
-                    FirstName = model.FirstName, // Propiedad agregada en inglés
+                    FirstName = model.FirstName,
                     LastName = model.LastName,
                     RegistrationDate = DateTime.UtcNow,
                     IsActive = true
@@ -46,7 +46,7 @@ namespace AulaVector.Web.Controllers
                 if (result.Succeeded)
                 {
                     // By default, assign 'Customer' role to new sign-ups
-                    await _userManager.AddToRoleAsync(user, "Customer");
+                    await _userManager.AddToRoleAsync(user, "Admin");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");

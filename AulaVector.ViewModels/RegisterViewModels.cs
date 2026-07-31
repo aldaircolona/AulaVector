@@ -4,28 +4,28 @@ namespace AulaVector.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "First name is required.")]
         [StringLength(50)]
-        [Display(Name = "First Name")]
+        [Display(Name = "Nombres")]
         public string FirstName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Last name is required.")]
         [StringLength(50)]
-        [Display(Name = "Last Name")]
+        [Display(Name = "Apellidos")]
         public string LastName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Email is required.")]
-        [EmailAddress(ErrorMessage = "Invalid email format.")]
+        [Required(ErrorMessage = "Username es obligatorio")]
+        public string UserName { get; set; } = string.Empty;
+
+        [EmailAddress(ErrorMessage = "Formato de email no válido")]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Password is required.")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Contraseña es obligatoria")]
+        [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} y máximo {1} caracteres", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare(nameof(Password), ErrorMessage = "La contraseña no coincide con la confirmación")]
         public string ConfirmPassword { get; set; } = string.Empty;
     }
 }
