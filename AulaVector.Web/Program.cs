@@ -30,6 +30,14 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+// Initialize System Roles on Database if not exists
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+
+    await DbInitializer.SeedRolesAsync(roleManager);
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

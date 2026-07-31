@@ -27,7 +27,7 @@ namespace AulaVector.Data
 
             // Store UTC DateTime values as "timestamp with time zone" (timestamptz)
             builder.Entity<ApplicationUser>()
-                .Property(u => u.FechaRegistro)
+                .Property(u => u.RegistrationDate)
                 .HasColumnType("timestamp with time zone");
 
             builder.Entity<Order>()

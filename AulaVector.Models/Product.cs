@@ -14,6 +14,10 @@ public class Product
     public string Author { get; set; } = string.Empty;
     
     public decimal Price { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime UpdatedAt { get; set; }
     
     /// <summary>
     /// File path or key to access the PDF stored in the server or storage service.

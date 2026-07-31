@@ -1,0 +1,84 @@
+@model Product
+
+@{
+    ViewData["Title"] = "Editar Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 py-3">
+    <div class="mb-4">
+        <a asp-action="Index" class="text-decoration-none text-muted">
+            <i class="bi bi-arrow-left"></i> Volver a la lista
+        </a>
+        <h1 class="h3 mb-0 text-gray-800 mt-2">Editar Producto</h1>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+            <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label fw-bold">Título</label>
+                            <input asp-for="Title" class="form-control" required />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-bold">Descripción</label>
+                            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check form-switch mb-3">
+                            <input asp-for="IsActive" class="form-check-input" type="checkbox" role="switch" id="isActiveSwitch">
+                            <label class="form-check-label fw-bold" for="isActiveSwitch">Producto Habilitado</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label asp-for="Price" class="form-label fw-bold">Precio ($)</label>
+                            <input asp-for="Price" type="number" step="0.01" class="form-control" required />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Reemplazar Portada (Opcional)</label>
+                            @if (!string.IsNullOrEmpty(Model.CoverImageUrl))
+                            {
+                                <div class="mb-2">
+                                    <img src="@Model.CoverImageUrl" alt="Portada Actual" class="img-thumbnail" style="max-height: 120px;" />
+                                </div>
+                            }
+                            <input type="file" name="coverFile" class="form-control" accept="image/*" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Reemplazar Archivo PDF (Opcional)</label>
+                            @if (!string.IsNullOrEmpty(Model.PdfFilePath))
+                            {
+                                <p class="text-success small mb-1"><i class="bi bi-file-earmark-pdf-fill"></i> PDF actual cargado en el servidor.</p>
+                            }
+                            <input type="file" name="pdfFile" class="form-control" accept=".pdf" />
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary px-4">Actualizar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
