@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System;
 namespace AulaVector.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CustomersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -43,7 +45,7 @@ namespace AulaVector.Web.Areas.Admin.Controllers
 
         // POST: Admin/Customers/ToggleStatus/{guid} (Soft Delete / Reactivación)
         [HttpPost]
-        // [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ToggleStatus(Guid id)
         {
             if (ModelState.IsValid)

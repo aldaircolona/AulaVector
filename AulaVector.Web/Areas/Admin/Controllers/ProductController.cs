@@ -8,7 +8,7 @@ using AulaVector.Utils;
 namespace AulaVector.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
