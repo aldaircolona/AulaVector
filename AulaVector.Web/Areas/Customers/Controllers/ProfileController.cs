@@ -18,7 +18,7 @@ namespace AulaVector.Web.Customer.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
 

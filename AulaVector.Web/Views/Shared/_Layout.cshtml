@@ -33,38 +33,41 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home"
                                asp-action="Privacy">Privacidad</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="adminDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
-                            </a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="adminDropdown" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </a>
 
-                            <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                                <li>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product"
-                                       asp-action="Index">
-                                        Productos
-                                    </a>
-                                </li>
+                                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Product"
+                                           asp-action="Index">
+                                            Productos
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Customers">
-                                        Usuarios
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Customers">
+                                            Usuarios
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
 
-                                <li>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Dashboard"
-                                       asp-action="Index">
-                                        Dashboard
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Dashboard"
+                                           asp-action="Index">
+                                            Dashboard
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav">
                         @if (User.Identity?.IsAuthenticated ?? false)
@@ -72,11 +75,31 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                                     <i class="bi bi-person-circle"></i>
+                                    Hola, @User.Identity.Name
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a class="dropdown-item" asp-area="Customers" asp-controller="Profile" asp-action="Details">
-                                            Ver perfil
+                                        <a class="dropdown-item" asp-area="Customers" asp-controller="Library"
+                                           asp-action="Index">
+                                           <i class="bi bi-journal-bookmark-fill"></i>
+                                            Mis libros
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Customers" asp-controller="Orders"
+                                           asp-action="Index">
+                                           <i class="bi bi-bag-fill"></i>
+                                            Mis compras
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Customers" asp-controller="Profile"
+                                           asp-action="Index">
+                                           <i class="bi bi-file-person-fill"></i>
+                                            Mi perfil
                                         </a>
                                     </li>
                                     <li>
@@ -85,6 +108,7 @@
                                     <li class="dropdown-item">
                                         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
                                             <button class="btn btn-link nav-link">
+                                                <i class="bi bi-box-arrow-left"></i>
                                                 Cerrar sesión
                                             </button>
                                         </form>

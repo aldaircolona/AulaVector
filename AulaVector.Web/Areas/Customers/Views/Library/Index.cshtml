@@ -1,11 +1,13 @@
 @model IEnumerable<AulaVector.Models.OrderDetail>
+@inject IConfiguration Configuration
 
 @{
     ViewData["Title"] = "My Library";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-primary"><i class="bi bi-journal-bookmark-fill"></i> My Library</h2>
+    <h2 class="mb-4 text-primary"><i class="bi bi-journal-bookmark-fill"></i>Mis libros</h2>
 
     @if (TempData["ErrorMessage"] != null)
     {
@@ -20,7 +22,7 @@
         {
             <div class="col-12">
                 <div class="alert alert-info text-center">
-                    You haven't purchased any books yet. <a href="/" class="alert-link">Browse our catalog</a>!
+                    Aún no adquiriste ningún libro <br /> <a href="/" class="alert-link">Mira nuestro catálogo</a>!
                 </div>
             </div>
         }
@@ -32,23 +34,34 @@
                     <div class="card h-100 shadow-sm border-0">
                         @if (!string.IsNullOrEmpty(item.Product.CoverImageUrl))
                         {
-                            <img src="@item.Product.CoverImageUrl" class="card-img-top" alt="Cover of @item.Product.Title" style="max-height: 300px; object-fit: cover;">
+                            <img src="@item.Product.CoverImageUrl" class="card-img-top" alt="Cover of @item.Product.Title"
+                                 style="max-height: 300px; object-fit: cover;">
                         }
                         <div class="card-body">
                             <h5 class="card-title fw-bold">@item.Product.Title</h5>
-                            <p class="card-text text-muted mb-1"><small>By @item.Product.Author</small></p>
+                            <p class="card-text text-muted mb-1"><small>Autor: @item.Product.Author</small></p>
                             <hr />
-                            <p class="card-text mb-0"><small>Downloads: @item.DownloadCount / @(item.DownloadLimit?.ToString() ?? "Unlimited")</small></p>
-                            <p class="card-text"><small>Purchased on: @item.Order.CreatedAt.ToString("MMM dd, yyyy")</small></p>
-                        </div>
-                        <div class="card-footer bg-white border-0 text-center pb-3">
-                            <a asp-action="Download" asp-route-id="@item.Id" class="btn btn-success w-100">
-                                <i class="bi bi-cloud-arrow-down-fill"></i> Download PDF
-                            </a>
+                            <p class="card-text mb-0"><small>Descargas: @item.DownloadCount / @(item.DownloadLimit?.ToString()
+                                                            ?? "Unlimited")</small></p>
+                                <p class="card-text"><small>Fecha de adquisición: @item.Order.CreatedAt.ToString("MMM dd, yyyy")</small></p>
+                            </div>
+                            <div class="card-footer bg-white border-0 text-center pb-3">
+                                <a asp-action="Download" asp-route-id="@item.Id" class="btn btn-success w-100">
+                                    <i class="bi bi-cloud-arrow-down-fill"></i> Descarga el PDF
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             }
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="text-center mt-5">
+                <a href="@Configuration["Gifts:ProfeDeMate"]" class="btn btn-success btn-lg" target="_blank" rel="noopener noreferrer">
+                    Reclamar regalo
+                </a>
+            </div>
         }
     </div>
-</div>
