@@ -63,6 +63,10 @@ namespace AulaVector.Data
 
                 entity.Property(p => p.CoverImageUrl)
                     .HasMaxLength(500);
+
+                entity.Property(e => e.ExternalProductId)
+                    .HasMaxLength(100)
+                    .IsRequired(false);
             });
 
             // ==========================
@@ -79,13 +83,19 @@ namespace AulaVector.Data
                     .HasPrecision(10, 2);
 
                 entity.Property(o => o.PaymentStatus)
-                    .HasMaxLength(50);
+                    .HasConversion<string>()
+                    .HasMaxLength(30);
 
                 entity.Property(o => o.PaymentMethod)
-                    .HasMaxLength(100);
+                    .HasMaxLength(50);
 
                 entity.Property(o => o.TransactionId)
-                    .HasMaxLength(200);
+                    .HasMaxLength(200)
+                    .IsRequired(false);
+                
+                entity.Property(e => e.Currency)
+                      .HasMaxLength(10)
+                      .HasDefaultValue("USD");
 
                 // Relationship with Identity User
                 entity.HasOne<ApplicationUser>()

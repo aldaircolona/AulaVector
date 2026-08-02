@@ -38,6 +38,8 @@ public class Product
     
     public long FileSizeBytes { get; set; }
 
+    public string ExternalProductId { get; set; } = string.Empty;
+
     // Navigation properties
     public ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 }
