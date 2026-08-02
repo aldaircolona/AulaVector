@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Mi Perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container py-4">
@@ -148,15 +149,12 @@
 
         <div class="card-footer d-flex justify-content-end gap-2">
 
-            <a asp-action="Edit"
-               class="btn btn-warning">
+            <a asp-area="Customers" asp-controller="Profile" asp-action="Edit" class="btn btn-warning">
                 <i class="bi bi-pencil-square me-1"></i>
                 Editar Perfil
             </a>
 
-            <a asp-controller="Home"
-               asp-action="Index"
-               class="btn btn-secondary">
+            <a asp-controller="Home" asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-secondary">
                 <i class="bi bi-house me-1"></i>
                 Inicio
             </a>
