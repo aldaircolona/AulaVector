@@ -1,0 +1,66 @@
+@model AulaVector.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Order Details</h2>
+        <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back to Orders</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-light fw-bold">
+                    Summary
+                </div>
+                <div class="card-body">
+                    <p><strong>Order ID:</strong> <br /> <small class="text-muted">@Model.Id</small></p>
+                    <p><strong>Transaction ID:</strong> <br /> @(string.IsNullOrEmpty(Model.TransactionId) ? "N/A" : Model.TransactionId)</p>
+                    <p><strong>Date:</strong> <br /> @Model.CreatedAt.ToString("f")</p>
+                    <p><strong>Total Amount:</strong> <br /> <span class="fs-5 fw-bold text-success">@Model.TotalAmount.ToString("C") @Model.Currency</span></p>
+                    <p class="mb-0"><strong>Status:</strong> <span class="badge bg-primary">@Model.PaymentStatus</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-light fw-bold">
+                    Items Purchased
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        @foreach (var detail in Model.OrderDetails)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                                <div class="d-flex align-items-center">
+                                    @if (!string.IsNullOrEmpty(detail.Product.CoverImageUrl))
+                                    {
+                                        <img src="@detail.Product.CoverImageUrl" alt="Cover" class="img-thumbnail me-3" style="width: 60px; height: 80px; object-fit: cover;" />
+                                    }
+                                    <div>
+                                        <h6 class="mb-0 fw-bold">@detail.Product.Title</h6>
+                                        <small class="text-muted">Unit Price: @detail.UnitPrice.ToString("C")</small>
+                                    </div>
+                                </div>
+                                @if (Model.PaymentStatus == AulaVector.Models.Enums.PaymentStatus.Approved)
+                                {
+                                    <a asp-controller="Library" asp-action="Download" asp-route-id="@detail.Id" class="btn btn-sm btn-success">
+                                        <i class="bi bi-download"></i> Download
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted fst-italic"><small>Pending Payment</small></span>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
