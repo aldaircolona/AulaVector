@@ -46,7 +46,7 @@ namespace AulaVector.Web.Controllers
                 if (result.Succeeded)
                 {
                     // By default, assign 'Customer' role to new sign-ups
-                    await _userManager.AddToRoleAsync(user, "Admin");
+                    await _userManager.AddToRoleAsync(user, "Customer");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
