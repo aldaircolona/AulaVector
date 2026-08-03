@@ -1,6 +1,6 @@
 <Solution>
   <Project Path="AulaVector.Data/AulaVector.Data.csproj" />
-  <Project Path="AulaVector.Models/AulaVector.Models.csproj" />
+  <Project Path="AulaVector.Domain/AulaVector.Domain.csproj" />
   <Project Path="AulaVector.Utils/AulaVector.Utils.csproj" />
   <Project Path="AulaVector.ViewModels/AulaVector.ViewModels.csproj" />
   <Project Path="AulaVector.Web/AulaVector.Web.csproj" />
