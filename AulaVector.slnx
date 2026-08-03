@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="AulaVector.Api/AulaVector.Api.csproj" />
   <Project Path="AulaVector.Data/AulaVector.Data.csproj" />
   <Project Path="AulaVector.Domain/AulaVector.Domain.csproj" />
   <Project Path="AulaVector.Utils/AulaVector.Utils.csproj" />
