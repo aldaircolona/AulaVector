@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using AulaVector.Models;
+using AulaVector.Domain.Models;
 
 namespace AulaVector.Data;
 

@@ -1,4 +1,4 @@
-namespace AulaVector.Models;
+namespace AulaVector.Domain.Models;
 
 /// <summary>
 /// Represents a digital product (e.g., PDF book) in the store.

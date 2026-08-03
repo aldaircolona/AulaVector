@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using AulaVector.Data;
-using AulaVector.Models;
-using AulaVector.Models.Enums;
+using AulaVector.Domain;
+using AulaVector.Domain.Enums;
 
 namespace AulaVector.Web.Areas.Customers.Controllers
 {

@@ -1,4 +1,4 @@
-namespace AulaVector.Models.Enums
+namespace AulaVector.Domain.Enums
 {
     /// <summary>
     /// Defines the possible states of a payment transaction from an external API.

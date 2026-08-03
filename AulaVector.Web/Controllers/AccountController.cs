@@ -1,4 +1,4 @@
-using AulaVector.Models;
+using AulaVector.Domain.Models;
 using AulaVector.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

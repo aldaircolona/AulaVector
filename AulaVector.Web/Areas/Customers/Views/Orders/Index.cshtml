@@ -1,4 +1,4 @@
-@model IEnumerable<AulaVector.Models.Order>
+@model IEnumerable<Order>
 
 @{
     ViewData["Title"] = "Order History";
@@ -41,13 +41,13 @@
                                     <td class="align-middle">
                                         @switch (item.PaymentStatus)
                                         {
-                                            case AulaVector.Models.Enums.PaymentStatus.Approved:
+                                            case PaymentStatus.Approved:
                                                 <span class="badge bg-success">Approved</span>
                                                 break;
-                                            case AulaVector.Models.Enums.PaymentStatus.Pending:
+                                            case PaymentStatus.Pending:
                                                 <span class="badge bg-warning text-dark">Pending</span>
                                                 break;
-                                            case AulaVector.Models.Enums.PaymentStatus.Canceled:
+                                            case PaymentStatus.Canceled:
                                                 <span class="badge bg-danger">Canceled</span>
                                                 break;
                                             default:

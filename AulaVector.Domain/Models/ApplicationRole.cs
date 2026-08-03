@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace AulaVector.Models
+namespace AulaVector.Domain.Models
 {
     public class ApplicationRole : IdentityRole<Guid>
     {

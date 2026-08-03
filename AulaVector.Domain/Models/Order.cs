@@ -1,6 +1,6 @@
-using AulaVector.Models.Enums;
+using AulaVector.Domain.Enums;
 
-namespace AulaVector.Models;
+namespace AulaVector.Domain.Models;
 
 /// <summary>
 /// Represents a purchase order placed by a user.

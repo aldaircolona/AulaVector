@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AulaVector.Data;
-using AulaVector.Models;
+using AulaVector.Domain.Models;
 using AulaVector.Utils;
 
 namespace AulaVector.Web.Areas.Admin.Controllers

@@ -1,4 +1,4 @@
-@model AulaVector.Models.Order
+@model Order
 
 @{
     ViewData["Title"] = "Order Details";
@@ -47,7 +47,7 @@
                                         <small class="text-muted">Precio unitario: @detail.UnitPrice.ToString("C")</small>
                                     </div>
                                 </div>
-                                @if (Model.PaymentStatus == AulaVector.Models.Enums.PaymentStatus.Approved)
+                                @if (Model.PaymentStatus == PaymentStatus.Approved)
                                 {
                                     <a asp-controller="Library" asp-action="Download" asp-route-id="@detail.Id" class="btn btn-sm btn-success">
                                         <i class="bi bi-download"></i> Descargar

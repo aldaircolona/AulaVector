@@ -1,4 +1,4 @@
-namespace AulaVector.Models;
+namespace AulaVector.Domain.Models;
 
 /// <summary>
 /// Represents a specific product line item within an order and manages download access.
